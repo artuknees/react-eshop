@@ -1,5 +1,6 @@
 const path = require('path'); // para saber donde vamos a trabajar
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // instancio el paquete
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // instancio el recurso
 
 module.exports = {
     entry: './src/index.js',
@@ -27,6 +28,14 @@ module.exports = {
                         loader: 'html-loader'
                     }
                 ]
+            },
+            {
+                test: /\.s[ac]ss$/i, // quiere decir sass o scss
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "sass-loader",
+                ],
             }
         ]
     },
@@ -35,5 +44,13 @@ module.exports = {
             template: './public/index.html',
             filename: './index.html'
         }),
-    ]
+        new MiniCssExtractPlugin({
+            filename: '[name].css'
+        }),
+    ],
+    devServer: {
+        static: path.join(__dirname,'dist'),
+        compress: true,
+        port: 3005,
+    }
 }
