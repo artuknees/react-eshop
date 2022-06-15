@@ -11,10 +11,14 @@ import CreateAccount from '../pages/CreateAccount';
 import Checkout from '../pages/Checkout';
 import Orders from '../pages/Orders';
 import NotFound from '../pages/NotFound';
-import './../styles/global.css'; // importo los estilos
+import '@styles/global.css'; // importo los estilos
+import AppContext from '../context/AppContext.js';
+import useInitialState from '../hooks/useInitialState';
 
 const App = () => {
+    const initialState = useInitialState();
     return (
+    <AppContext.Provider value={initialState} >
         <BrowserRouter>
             <Layout>
                 <Routes>
@@ -31,6 +35,7 @@ const App = () => {
                 </Routes>
             </Layout>
         </BrowserRouter>
+    </AppContext.Provider>
     );
 }
 
