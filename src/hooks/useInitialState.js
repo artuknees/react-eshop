@@ -17,12 +17,25 @@ const useInitialState = () => {
         });
     };
 
-    const removeFromCart = (payload) => {
+    // const removeFromCart = (payload) => {
+    //     setState({
+    //         ...state,
+    //         cart: state.cart.filter(items => items.id !== payload.id),
+    //     });
+    // };
+    const removeFromCart = (indexValue) => {
         setState({
             ...state,
-            cart: state.cart.filter(items => items.id !== payload.id),
+            cart: state.cart.filter((product,index) => index !== indexValue),
         });
     };
+
+    // // verificadores mios
+    // if (state.cart.length > 1) {
+    //     console.log(state.cart[1]); // imprimo el segundo elemento.
+    // };
+    // console.log(state.cart.length);
+    // // hasta aca
 
     return {
         state,

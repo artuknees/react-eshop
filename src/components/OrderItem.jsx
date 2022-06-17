@@ -3,12 +3,22 @@ import AppContext from '../context/AppContext';
 import '../styles/OrderItem.scss';
 import iconClose from '@icons/icon_close.png';
 
-const OrderItem = ({product}) => {
+const OrderItem = (props) => {
+	// solucion para evitar multi borrad
+	const { product , indexValue } = props;
+	// console.log(props);
+	//
+
 	const { removeFromCart } = useContext(AppContext); // ya me traje la función
 
-	const handleRemove = product => {
-		removeFromCart(product);
+	// const handleRemove = product => {
+	// 	removeFromCart(product);
+	// };
+	//
+	const handleRemove = (index) => {
+		removeFromCart(index);
 	};
+	//
 
 	return (
 		<div className="OrderItem">
@@ -17,7 +27,9 @@ const OrderItem = ({product}) => {
 			</figure>
 			<p>{product.title}</p>
 			<p>${product.price}</p>
-			<img src={iconClose} alt="close" onClick={() => handleRemove(product)} />
+			<img src={iconClose} alt="close" onClick={() => handleRemove(indexValue)} />
+
+			{/* <img src={iconClose} alt="close" onClick={() => handleRemove(product)} /> */}
 		</div>
 	);
 }
