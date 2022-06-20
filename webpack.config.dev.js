@@ -7,9 +7,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname,'dist'), // como estandar la llamamos dist a la salida
         filename: 'bundle.js', // como se va a llamar la salida
-        publicPath: './',
     },
-    // mode: 'development',
+    mode: 'development',
     resolve: {
         extensions: ['.js','.jsx'], // las extensiones que usaremos
         alias: {
